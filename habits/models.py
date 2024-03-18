@@ -3,12 +3,6 @@ from django.db import models
 from spa_project import settings
 
 
-class Periodicity:
-    once_a_week = 1
-    twice_a_week = 2
-    daily = 3
-
-
 class Habit(models.Model):
     """
     Habit - модель привычки
@@ -22,7 +16,7 @@ class Habit(models.Model):
     associated_habit = models.ForeignKey(
         "self", on_delete=models.CASCADE, blank=True, null=True, verbose_name="Associated habit"
     )
-    periodicity = models.IntegerField(default=1, verbose_name="Periodicity")
+    periodicity = models.PositiveIntegerField(default=1, verbose_name="Periodicity", help_text="Days in a week")
     reward = models.CharField(max_length=100, blank=True, null=True, verbose_name="Reward for action")
     continuance = models.IntegerField(verbose_name="Continuance habit in seconds")
     is_public = models.BooleanField(default=False, verbose_name="Is public")
