@@ -1,10 +1,10 @@
 from rest_framework import permissions
 
 
-class IsModerator(permissions.BasePermission):
+class IsAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
         for group in request.user.groups.all():
-            if group.name == "Moderator":
+            if group.name == "Admins":
                 return True
 
         return False
