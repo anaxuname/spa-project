@@ -1,7 +1,11 @@
 from rest_framework import serializers
 
 from habits.models import Habit
-from habits.validators import continuance_validator, periodicity_validator
+from habits.validators import (
+    HabitValidator,
+    continuance_validator,
+    periodicity_validator,
+)
 
 
 class HabitSerializer(serializers.ModelSerializer):
@@ -26,4 +30,6 @@ class HabitSerializer(serializers.ModelSerializer):
             "periodicity",
             "reward",
             "continuance",
+            "is_public",
         )
+        validators = [HabitValidator()]
