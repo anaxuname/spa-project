@@ -49,13 +49,16 @@ class TestHabits(APITestCase):
                         "associated_habit": None,
                         "periodicity": 1,
                         "continuance": 120,
+                        "is_public": True,
                     }
                 ],
             },
         )
 
     def test_habit_delete(self):
-        response = self.client.delete(reverse("habits:delete", args=[self.habit.id]))
+        response = self.client.delete(
+            reverse("habits:delete", args=[self.habit.id])
+        )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_habit_create(self):
@@ -66,6 +69,7 @@ class TestHabits(APITestCase):
             "periodicity": 7,
             "reward": "coffee",
             "continuance": 10,
+            "is_public": True,
         }
         response = self.client.post(reverse("habits:create"), data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -80,11 +84,14 @@ class TestHabits(APITestCase):
                 "periodicity": 7,
                 "reward": "coffee",
                 "continuance": 10,
+                "is_public": True,
             },
         )
 
     def test_get_habit_detail(self):
-        response = self.client.get(reverse("habits:retrieve", args=[self.habit.id]))
+        response = self.client.get(
+            reverse("habits:retrieve", args=[self.habit.id])
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         expected_data = {
             "place": "outside",
@@ -95,6 +102,7 @@ class TestHabits(APITestCase):
             "periodicity": 1,
             "reward": "fruit",
             "continuance": 120,
+            "is_public": True,
         }
         self.assertEqual(response.data, expected_data)
 
@@ -103,12 +111,15 @@ class TestHabits(APITestCase):
             "place": "at home",
             "time_for_habit": "07:00:00",
             "action": "drink water",
-            "is_enjoyable": True,
+            "is_enjoyable": False,
             "periodicity": 7,
             "reward": "fruit",
             "continuance": 20,
+            "is_public": True,
         }
-        response = self.client.put(reverse("habits:update", args=[self.habit.id]), data)
+        response = self.client.put(
+            reverse("habits:update", args=[self.habit.id]), data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
             response.data,
@@ -116,10 +127,11 @@ class TestHabits(APITestCase):
                 "place": "at home",
                 "time_for_habit": "07:00:00",
                 "action": "drink water",
-                "is_enjoyable": True,
+                "is_enjoyable": False,
                 "associated_habit": None,
                 "periodicity": 7,
                 "reward": "fruit",
                 "continuance": 20,
+                "is_public": True,
             },
         )
