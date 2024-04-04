@@ -105,7 +105,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "spa-project",
         "USER": "postgres",
-        "PASSWORD": env("DB_PASSWORD"),
+        "PASSWORD": env("POSTGRES_PASSWORD"),
     }
 }
 
