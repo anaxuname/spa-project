@@ -15,10 +15,21 @@
 Также необходимо заполнить виртуальное окружение и создать файл .env для сохрания паролей.
 Необходимые поля для заполнения:
 * SECRET_KEY=
-* DB_PASSWORD=
+* POSTGRES_PASSWORD =
 * TELEGRAM_API_KEY=
 * CELERY_BROKER_URL=
 * CELERY_RESULT_BACKEND=
 
 
 Для отправки сообщений по "привычкам", необходимо получить Token от Telegram Bot.
+
+Вся документация по эндпоинтам находится по ссылкам:
+http://localhost:8000/swagger/
+http://localhost:8000/redoc/
+
+# ЗАПУСК ЧЕРЕЗ DOCKER
+Для запуска проекта через Docker необходимо установить Docker Desktop.
+Затем установить соответствующие настройки для базы данных (в файле settings.py есть два варианта: для запуска через Docker и для запуска локально) и выполнить комманду
+```python
+docker-compose up -d —build
+```
